@@ -1,0 +1,5 @@
+# Original reference files (web-optimised copies live in assets/)
+/*.png
+/*.mp4
+.claude/
+node_modules/

@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verdant — Emeraude 300 | Maison Verdant Genève</title>
+  <meta name="description" content="Emeraude 300 by Maison Verdant. A 41 mm emerald diver, 300 m water resistance, 70-hour calibre V-70. Explore it piece by piece." />
+  <meta name="theme-color" content="#04110a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%2334d27c' stroke-width='3'/%3E%3Cpath d='M16 7v9l6 4' stroke='%23e9e4d4' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/hero.mp4" as="fetch" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div class="loader__dial" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <circle class="loader__track" cx="60" cy="60" r="54" />
+        <circle class="loader__ring" id="loaderRing" cx="60" cy="60" r="54" pathLength="100" />
+        <g class="loader__ticks"></g>
+      </svg>
+      <span class="loader__pct" id="loaderPct">00</span>
+    </div>
+    <p class="loader__brand">Maison <span>Verdant</span></p>
+    <p class="loader__msg" id="loaderMsg">Winding the movement…</p>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="Verdant home">
+      <svg class="nav__mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5" /><path d="M16 7.5V16l5.5 3.5" /></svg>
+      <span>VERDANT</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#collection">Collection</a>
+      <a href="#anatomy">Anatomy</a>
+      <a href="#craft">Craft</a>
+      <a href="#boutique">Boutiques</a>
+    </nav>
+    <a href="#boutique" class="btn btn--ghost nav__cta">Book a viewing</a>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav aria-label="Mobile">
+      <a href="#collection">Collection</a>
+      <a href="#anatomy">Anatomy</a>
+      <a href="#craft">Craft</a>
+      <a href="#boutique">Boutiques</a>
+    </nav>
+    <p class="mobile-menu__foot">Genève · Paris · Tokyo · New York</p>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO: scroll-scrubbed disassembly ============ -->
+    <section class="hero" id="top" aria-label="Emeraude 300 introduction">
+      <div class="hero__sticky">
+        <div class="hero__stage" id="stage">
+          <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+          <canvas class="hero__dust" id="dustCanvas" aria-hidden="true"></canvas>
+          <div class="hero__vignette" aria-hidden="true"></div>
+        </div>
+        <video id="heroVideo" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
+
+        <!-- Phase A: intro -->
+        <div class="hero__phase hero__phase--a js-phase-a" data-phase="a">
+          <p class="eyebrow">Maison Verdant · Genève · Est. 1924</p>
+          <h1 class="hero__title">
+            <span class="line"><span>Time,</span></span>
+            <span class="line"><em>cut from</em></span>
+            <span class="line"><span>emerald.</span></span>
+          </h1>
+          <p class="hero__lede">Emeraude 300 — a 41&nbsp;mm diver built from 312 hand-finished parts. Scroll, and we'll take it apart for you.</p>
+        </div>
+
+        <div class="hero__side js-phase-a" aria-hidden="true">
+          <span>Ref. VR-300</span><span>41 mm</span><span>300 m</span><span>70 h</span>
+        </div>
+
+        <!-- Phase B: callouts -->
+        <div class="hero__phase hero__phase--b" data-phase="b">
+          <p class="eyebrow">Disassembly · 01 — 04</p>
+          <h2 class="hero__h2">Unbuilt,<br /><em>piece by piece.</em></h2>
+          <ol class="callouts">
+            <li><span class="callouts__n">01</span><div><strong>Sapphire crystal</strong><small>Domed, 9-layer anti-reflective</small></div></li>
+            <li><span class="callouts__n">02</span><div><strong>Ceramic bezel</strong><small>Unidirectional, 120 clicks</small></div></li>
+            <li><span class="callouts__n">03</span><div><strong>Sunburst dial</strong><small>Hand-lacquered emerald</small></div></li>
+            <li><span class="callouts__n">04</span><div><strong>Calibre V-70</strong><small>31 jewels, 70-hour reserve</small></div></li>
+          </ol>
+        </div>
+
+        <!-- Phase C: finale -->
+        <div class="hero__phase hero__phase--c" data-phase="c">
+          <p class="eyebrow">The whole, revealed</p>
+          <h2 class="hero__h2">312 components.<br /><em>One heartbeat.</em></h2>
+          <a href="#collection" class="btn btn--solid">Discover Emeraude 300</a>
+        </div>
+
+        <!-- Scroll dial indicator -->
+        <div class="scroll-dial" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <circle class="scroll-dial__face" cx="50" cy="50" r="46" />
+            <g class="scroll-dial__ticks"></g>
+            <circle class="scroll-dial__arc" id="dialArc" cx="50" cy="50" r="46" pathLength="100" />
+            <line class="scroll-dial__hand" id="dialHand" x1="50" y1="50" x2="50" y2="14" />
+            <circle cx="50" cy="50" r="2.5" class="scroll-dial__pin" />
+          </svg>
+          <div class="scroll-dial__label"><span id="partCount">000</span><small>/ 312 parts</small></div>
+        </div>
+
+        <div class="hero__hint" id="hint" aria-hidden="true"><span>Scroll to disassemble</span><i></i></div>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto" aria-label="Manifesto">
+      <p class="manifesto__text" id="manifesto">We don't build watches to tell time. Time is everywhere. We build them to be <em>understood</em> — every bridge bevelled, every screw blued, every second earned by a heart that beats twenty-eight thousand eight hundred times an hour.</p>
+      <div class="manifesto__sig"><span>— Élise Marchand,</span> Master Watchmaker</div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Swiss Made</span><i>✦</i><span>300 m Water Resistance</span><i>✦</i><span>COSC Chronometer</span><i>✦</i><span>70-Hour Reserve</span><i>✦</i><span>Ceramic Bezel</span><i>✦</i><span>Five-Year Warranty</span><i>✦</i>
+        <span>Swiss Made</span><i>✦</i><span>300 m Water Resistance</span><i>✦</i><span>COSC Chronometer</span><i>✦</i><span>70-Hour Reserve</span><i>✦</i><span>Ceramic Bezel</span><i>✦</i><span>Five-Year Warranty</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ============ COLLECTION / CONFIGURATOR ============ -->
+    <section class="collection" id="collection" aria-labelledby="collection-title">
+      <div class="section-head">
+        <p class="eyebrow">The Collection</p>
+        <h2 id="collection-title" class="h2">Four colours of <em>deep water.</em></h2>
+      </div>
+
+      <div class="config">
+        <div class="config__visual" id="tiltCard">
+          <div class="config__glow" aria-hidden="true"></div>
+          <img id="configImg" src="assets/watch-studio-1672.jpg" srcset="assets/watch-studio-900.jpg 900w, assets/watch-studio-1672.jpg 1672w" sizes="(max-width: 900px) 100vw, 60vw" width="1672" height="941" alt="Emeraude 300 diver watch with emerald dial and bezel on a steel bracelet" loading="lazy" decoding="async" />
+          <span class="config__ref" id="configRef">VR-300 · EMR</span>
+        </div>
+
+        <div class="config__panel">
+          <p class="config__kicker" id="configKicker">Edition 01</p>
+          <h3 class="config__name" id="configName">Emeraude</h3>
+          <p class="config__desc" id="configDesc">Our signature. A sunburst emerald dial that shifts from forest to jade as the light moves across it.</p>
+
+          <fieldset class="swatches">
+            <legend>Choose a dial</legend>
+            <label class="swatch"><input type="radio" name="dial" value="emeraude" checked /><span style="--c:#1fa35a" aria-hidden="true"></span>Emeraude</label>
+            <label class="swatch"><input type="radio" name="dial" value="abysse" /><span style="--c:#1f6fb8" aria-hidden="true"></span>Abysse</label>
+            <label class="swatch"><input type="radio" name="dial" value="onyx" /><span style="--c:#2a2d2c" aria-hidden="true"></span>Onyx</label>
+            <label class="swatch"><input type="radio" name="dial" value="soleil" /><span style="--c:#b88a3e" aria-hidden="true"></span>Soleil</label>
+          </fieldset>
+
+          <dl class="config__specs">
+            <div><dt>Case</dt><dd>41 mm Oystersteel</dd></div>
+            <div><dt>Movement</dt><dd>Calibre V-70</dd></div>
+            <div><dt>Water</dt><dd>300 m / 1,000 ft</dd></div>
+          </dl>
+
+          <div class="config__buy">
+            <p class="config__price"><span id="configPrice">CHF 11,900</span><small>incl. VAT</small></p>
+            <a href="#boutique" class="btn btn--solid">Reserve yours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANATOMY (hotspots) ============ -->
+    <section class="anatomy" id="anatomy" aria-labelledby="anatomy-title">
+      <div class="section-head section-head--center">
+        <p class="eyebrow">Anatomy</p>
+        <h2 id="anatomy-title" class="h2">Everything you'll <em>never see.</em></h2>
+        <p class="section-head__sub">Select a point to explore the engineering beneath the emerald.</p>
+      </div>
+
+      <div class="anatomy__frame">
+        <img src="assets/watch-exploded-1672.jpg" srcset="assets/watch-exploded-900.jpg 900w, assets/watch-exploded-1672.jpg 1672w" sizes="(max-width: 1200px) 100vw, 1200px" width="1672" height="941" alt="Exploded view of the Emeraude 300 showing crystal, bezel, dial, movement and case separated" loading="lazy" decoding="async" />
+        <div class="hotspots" id="hotspots">
+          <button class="hotspot" style="--x:18%;--y:27%" data-i="0" aria-label="Sapphire crystal"><span></span></button>
+          <button class="hotspot" style="--x:24%;--y:50%" data-i="1" aria-label="Ceramic bezel"><span></span></button>
+          <button class="hotspot" style="--x:31%;--y:31%" data-i="2" aria-label="Sunburst dial"><span></span></button>
+          <button class="hotspot" style="--x:52%;--y:46%" data-i="3" aria-label="Calibre V-70 movement"><span></span></button>
+          <button class="hotspot" style="--x:74.5%;--y:57%" data-i="4" aria-label="Screw-down crown"><span></span></button>
+          <button class="hotspot" style="--x:79%;--y:28%" data-i="5" aria-label="Oyster bracelet"><span></span></button>
+        </div>
+        <div class="anatomy__card" id="anatomyCard" aria-live="polite">
+          <p class="anatomy__idx" id="anatomyIdx">01 / 06</p>
+          <h3 id="anatomyTitle">Sapphire crystal</h3>
+          <p id="anatomyText">Synthetic sapphire, second only to diamond in hardness, domed by 0.4 mm and coated on both sides so the dial reads cleanly at any angle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPECS BENTO ============ -->
+    <section class="specs" aria-labelledby="specs-title">
+      <h2 id="specs-title" class="visually-hidden">Specifications</h2>
+      <div class="bento">
+        <article class="bento__cell bento__cell--lg">
+          <p class="bento__k">Power reserve</p>
+          <p class="bento__v"><span class="count" data-to="70">0</span><sup>h</sup></p>
+          <p class="bento__d">Wind it on Friday. It's still running on Monday morning.</p>
+          <div class="reserve" aria-hidden="true"><i></i></div>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Water resistance</p>
+          <p class="bento__v"><span class="count" data-to="300">0</span><sup>m</sup></p>
+          <p class="bento__d">Helium valve and triple-seal crown.</p>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Accuracy</p>
+          <p class="bento__v">±<span class="count" data-to="2">0</span><sup>s/day</sup></p>
+          <p class="bento__d">Twice as precise as COSC requires.</p>
+        </article>
+        <article class="bento__cell bento__cell--img">
+          <img src="assets/watch-exploded-900.jpg" width="900" height="507" alt="" loading="lazy" decoding="async" />
+          <p class="bento__k">Frequency</p>
+          <p class="bento__v"><span class="count" data-to="28800">0</span><sup>vph</sup></p>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Jewels</p>
+          <p class="bento__v"><span class="count" data-to="31">0</span></p>
+          <p class="bento__d">Synthetic rubies at every point of friction.</p>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Diameter</p>
+          <p class="bento__v"><span class="count" data-to="41">0</span><sup>mm</sup></p>
+          <p class="bento__d">12.5 mm thin, sized for any wrist.</p>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Luminescence</p>
+          <p class="bento__v"><span class="count" data-to="8">0</span><sup>h</sup></p>
+          <p class="bento__d">Blue-glow Chromalight at every index.</p>
+        </article>
+        <article class="bento__cell">
+          <p class="bento__k">Warranty</p>
+          <p class="bento__v"><span class="count" data-to="5">0</span><sup>yrs</sup></p>
+          <p class="bento__d">International, transferable, no fine print.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CRAFT: horizontal scroll ============ -->
+    <section class="craft" id="craft" aria-labelledby="craft-title">
+      <div class="craft__pin">
+        <div class="craft__head">
+          <p class="eyebrow">Craft</p>
+          <h2 id="craft-title" class="h2">Fourteen months,<br /><em>four chapters.</em></h2>
+        </div>
+        <div class="craft__track" id="craftTrack">
+          <article class="chapter">
+            <div class="chapter__img" style="--img:url('../assets/watch-studio-1672.jpg');--pos:50% 40%;--zoom:2.4"></div>
+            <span class="chapter__n">01</span>
+            <h3>Design</h3>
+            <p>Two years of sketches before a single gram of steel is cut. The case profile alone went through 63 revisions.</p>
+          </article>
+          <article class="chapter">
+            <div class="chapter__img" style="--img:url('../assets/watch-exploded-1672.jpg');--pos:57% 52%;--zoom:3.6"></div>
+            <span class="chapter__n">02</span>
+            <h3>Movement</h3>
+            <p>Calibre V-70 is assembled by a single watchmaker, start to finish, then signed on the rotor.</p>
+          </article>
+          <article class="chapter">
+            <div class="chapter__img" style="--img:url('../assets/watch-exploded-1672.jpg');--pos:27% 33%;--zoom:3.4"></div>
+            <span class="chapter__n">03</span>
+            <h3>Assembly</h3>
+            <p>Dial, hands and bezel are fitted under a laminar-flow hood — not a single speck of dust allowed inside.</p>
+          </article>
+          <article class="chapter">
+            <div class="chapter__img" style="--img:url('../assets/watch-studio-1672.jpg');--pos:50% 85%;--zoom:2"></div>
+            <span class="chapter__n">04</span>
+            <h3>Testing</h3>
+            <p>Twenty-one days across six positions and three temperatures. Then pressure-tested to 375 metres.</p>
+          </article>
+        </div>
+        <div class="craft__progress" aria-hidden="true"><i id="craftBar"></i></div>
+      </div>
+    </section>
+
+    <!-- ============ PRESS ============ -->
+    <section class="press" aria-label="Press">
+      <figure class="press__quote">
+        <blockquote>“The most quietly confident diver of the decade. You'll find yourself checking the time just to look at it.”</blockquote>
+        <figcaption>— Horological Review, 2026</figcaption>
+      </figure>
+      <ul class="press__logos" aria-label="As featured in">
+        <li>Le Calibre</li><li>The Escapement</li><li>Tourbillon Quarterly</li><li>Dial &amp; Hand</li><li>Atelier</li>
+      </ul>
+    </section>
+
+    <!-- ============ BOUTIQUE / CTA ============ -->
+    <section class="boutique" id="boutique" aria-labelledby="boutique-title">
+      <div class="boutique__intro">
+        <p class="eyebrow">Private viewing</p>
+        <h2 id="boutique-title" class="h2">Hold it<br /><em>before you decide.</em></h2>
+        <p>Book a private appointment at one of our boutiques. A watchmaker will open the caseback for you and walk you through every part you just scrolled past.</p>
+        <ul class="boutique__cities">
+          <li><strong>Genève</strong><span>Rue du Rhône 48</span></li>
+          <li><strong>Paris</strong><span>Place Vendôme 12</span></li>
+          <li><strong>Tokyo</strong><span>Ginza 4-6-16</span></li>
+          <li><strong>New York</strong><span>Madison Ave 730</span></li>
+        </ul>
+      </div>
+
+      <form class="form" id="bookForm" novalidate>
+        <div class="field">
+          <label for="f-name">Full name <span aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+          <p class="field__err" id="e-name" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email" />
+          <p class="field__err" id="e-email" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="f-city">Boutique</label>
+          <select id="f-city" name="city">
+            <option>Genève</option><option>Paris</option><option>Tokyo</option><option>New York</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--solid btn--block" id="bookBtn"><span>Request appointment</span></button>
+        <p class="form__ok" id="formOk" role="status" hidden>Thank you — a concierge will be in touch within 24 hours.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__label">Maison</p>
+        <a href="#craft">Our story</a><a href="#craft">Manufacture</a><a href="#boutique">Careers</a>
+      </div>
+      <div>
+        <p class="footer__label">Service</p>
+        <a href="#boutique">Book a service</a><a href="#boutique">Warranty</a><a href="#boutique">Authenticity</a>
+      </div>
+      <div>
+        <p class="footer__label">Follow</p>
+        <a href="#top">Instagram</a><a href="#top">YouTube</a><a href="#top">Journal</a>
+      </div>
+      <p class="footer__note">© 2026 Maison Verdant SA. Swiss Made.</p>
+    </div>
+    <p class="footer__word" aria-hidden="true">VERDANT</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
