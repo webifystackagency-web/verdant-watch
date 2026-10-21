@@ -109,13 +109,28 @@
     return new Blob(chunks, { type: 'video/mp4' });
   }
 
+  // Resolves true if the event fired, false on timeout.
   function once(el, ev, timeout = 2000) {
     return new Promise((resolve) => {
       let t;
-      const fn = () => { clearTimeout(t); el.removeEventListener(ev, fn); resolve(); };
-      el.addEventListener(ev, fn);
-      t = setTimeout(fn, timeout);
+      const done = (fired) => { clearTimeout(t); el.removeEventListener(ev, onEv); resolve(fired); };
+      const onEv = () => done(true);
+      el.addEventListener(ev, onEv);
+      t = setTimeout(() => done(false), timeout);
     });
+  }
+
+  // iOS Safari doesn't decode frames for a video that has never played, so seeks
+  // and drawImage come back blank. A muted inline play() + pause() primes the decoder.
+  async function loadVideo(src) {
+    video.src = src;
+    const loaded = once(video, 'loadeddata', 8000);
+    // Don't await play(): it can stay pending forever when the video can't load.
+    const playing = video.play();
+    if (playing) playing.catch(() => { /* autoplay blocked, e.g. iOS Low Power Mode */ });
+    const ok = (await loaded) || video.readyState >= 2;
+    video.pause();
+    if (!ok) throw new Error('video did not load');
   }
 
   async function seek(time) {
@@ -123,7 +138,7 @@
     await once(video, 'seeked');
   }
 
-  async function extractFrames(onFirstPass) {
+  async function extractFrames(onFirstFrame) {
     const off = document.createElement('canvas');
     off.width = video.videoWidth;
     off.height = video.videoHeight;
@@ -139,12 +154,15 @@
       for (let i = 0; i < engine.total; i += stride) if (!seen.has(i)) { seen.add(i); order.push(i); }
     }
     if (!seen.has(engine.total - 1)) order.splice(1, 0, engine.total - 1);
-    const firstPass = Math.ceil(engine.total / 12) + 1;
 
     for (let n = 0; n < order.length; n++) {
       const i = order[n];
       await seek(Math.min((i + 0.5) / FPS, dur - 0.02));
       octx.drawImage(video, 0, 0, off.width, off.height);
+      // Video frames are opaque, so a transparent pixel means the decoder gave us nothing.
+      if (n === 0 && octx.getImageData(off.width >> 1, off.height >> 1, 1, 1).data[3] === 0) {
+        throw new Error('video frames are blank');
+      }
       // toBlob snapshots the bitmap synchronously, so the next seek can start immediately.
       off.toBlob((blob) => {
         if (!blob) return;
@@ -153,8 +171,7 @@
         img.decode().then(() => { engine.frames[i] = img; requestRender(); }).catch(() => {});
       }, 'image/jpeg', 0.88);
 
-      if (n < firstPass) onFirstPass((n + 1) / firstPass);
-      else if (n === firstPass) onFirstPass(1);
+      if (n === 0) onFirstFrame();
     }
   }
 
@@ -230,6 +247,21 @@
       if (key === engine.lastKey) return;
       engine.lastKey = key;
       drawSource(img, img.naturalWidth, img.naturalHeight);
+    } else if (engine.mode === 'poster') {
+      // Last resort when the video can't play at all: cross-fade the assembled
+      // watch into the exploded view as the user scrolls.
+      const [a, b] = engine.posters;
+      const p = engine.progress;
+      const mix = clamp((p - 0.15) / 0.5, 0, 1);
+      const key = 'poster' + engine.W + 'x' + engine.H + p.toFixed(3);
+      if (!a.naturalWidth || key === engine.lastKey) return;
+      engine.lastKey = key;
+      drawSource(a, a.naturalWidth, a.naturalHeight);
+      if (b.naturalWidth && mix > 0) {
+        ctx.globalAlpha = mix * mix * (3 - 2 * mix);
+        drawSource(b, b.naturalWidth, b.naturalHeight);
+        ctx.globalAlpha = 1;
+      }
     } else if (video.readyState >= 2) {
       // Fallback: seek the <video> directly (used when frames can't be extracted, e.g. file://).
       const t = engine.progress * (video.duration - 0.05);
@@ -253,26 +285,39 @@
   async function initHero() {
     resizeCanvas();
     try {
-      const blob = await fetchVideo((p) => setLoad(p * 0.65, 'Winding the movement…'));
-      video.src = URL.createObjectURL(blob);
-      await once(video, 'loadeddata', 8000);
-      setLoad(0.65, 'Setting the hands…');
+      const blob = await fetchVideo((p) => setLoad(p * 0.9, 'Winding the movement…'));
+      await loadVideo(URL.createObjectURL(blob));
+      setLoad(0.9, 'Setting the hands…');
       // Probe: make sure the canvas isn't tainted before committing to frame mode.
       const probe = document.createElement('canvas');
       probe.getContext('2d').drawImage(video, 0, 0, 1, 1);
       probe.toDataURL();
-      // Resolve as soon as the coarse pass covers the whole timeline; finer frames keep filling in.
+      // Resolve once the first frame is in: the visitor starts at the top of the hero,
+      // and the rest of the timeline fills in (coarse to fine) while they read.
       await new Promise((resolve, reject) => {
-        extractFrames((p) => { setLoad(0.65 + p * 0.35); if (p >= 1) resolve(); })
-          .then(resolve, reject);
+        extractFrames(() => { setLoad(1); resolve(); }).then(resolve, reject);
       });
     } catch (err) {
-      engine.mode = 'video';
-      video.src = VIDEO_URL;
-      await once(video, 'loadeddata', 8000);
+      try {
+        engine.mode = 'video';
+        await loadVideo(VIDEO_URL);
+      } catch (e) {
+        await loadPosters();
+      }
       setLoad(1);
       requestRender();
     }
+  }
+
+  async function loadPosters() {
+    engine.mode = 'poster';
+    const wide = window.innerWidth > 900;
+    engine.posters = ['watch-studio', 'watch-exploded'].map((name) => {
+      const img = new Image();
+      img.src = `assets/${name}-${wide ? 1672 : 900}.jpg`;
+      return img;
+    });
+    await Promise.all(engine.posters.map((img) => img.complete || once(img, 'load', 8000)));
   }
 
   /* ---------- Dust particles (glints that drift off as the watch comes apart) ---------- */
